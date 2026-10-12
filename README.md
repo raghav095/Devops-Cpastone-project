@@ -208,8 +208,8 @@ kubectl get servicemonitors -n taskboard
 ```
 
 **Screenshots for Submission**:
-- **Prometheus Metrics & Grafana Dashboard Output**:
-  ![Module 9 Observability](./screenshots/09-observability.png)
+- **Prometheus Metrics & Live Application Instrumentation**:
+  ![Module 9 Observability Prometheus Metrics](./screenshots/m9-01-metrics.png)
 
 ---
 
@@ -225,5 +225,5 @@ kubectl get endpoints -n taskboard
 ```
 
 **Screenshots for Submission**:
-- **Troubleshooting RCA Output**:
-  ![Module 10 Troubleshooting RCA](./screenshots/10-troubleshooting.png)
+- **Troubleshooting RCA Output (ImagePullBackOff & Mismatched Service Selector)**:
+  ![Module 10 Troubleshooting RCA](./screenshots/m10-01-troubleshooting.png)
