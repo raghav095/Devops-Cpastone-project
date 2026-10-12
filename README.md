@@ -171,25 +171,30 @@ terraform plan
 ```
 
 **Screenshots for Submission**:
-- **Terraform Plan & AWS Provisioning Output**:
-  ![Module 7 Terraform Plan](./screenshots/07-terraform-plan.png)
+- **Terraform Configuration Validation (HCL Validated)**:
+  ![Module 7 Terraform Validate](./screenshots/m7-01-terraform-validate.png)
+
+> **Note on Infrastructure**: Terraform configuration in `terraform/` defines a production-ready AWS VPC (4 subnets across 2 AZs, NAT gateway) and AWS EKS cluster (`1.31`) with managed worker node groups. Configuration is validated, formatted, and verified via `terraform validate`.
 
 ---
 
 ### Module 8: Kubernetes & Helm Package Management
-- **Helm Chart**: Parameterized deployment in `helm/taskboard/` managing backend, frontend, ClusterIP services, Ingress, and HPA.
+- **Helm Chart**: Parameterized deployment in `helm/taskboard/` managing backend, frontend, PostgreSQL, ClusterIP services, Ingress, and HorizontalPodAutoscaler (HPA).
 
 **Commands to run**:
 ```bash
-kubectl apply -f capstone-project/k8s/namespace.yaml
-helm upgrade --install taskboard capstone-project/helm/taskboard -n taskboard
+helm lint helm/taskboard
+helm template taskboard helm/taskboard
+helm upgrade --install taskboard ./helm/taskboard -n taskboard
 kubectl get pods,svc,ingress,hpa -n taskboard
 helm list -n taskboard
 ```
 
 **Screenshots for Submission**:
-- **Kubernetes Pods & Helm Status Output**:
-  ![Module 8 K8s Pods & Helm](./screenshots/08-k8s-helm.png)
+- **Helm Package Linting & Manifest Templates**:
+  ![Module 8 Helm Lint and Templates](./screenshots/m8-01-helm-lint-and-template.png)
+- **Kubernetes Live Running Pods, Services, Ingress & HPA**:
+  ![Module 8 K8s Running Pods & Helm Status](./screenshots/m8-02-k8s-running-pods.png)
 
 ---
 

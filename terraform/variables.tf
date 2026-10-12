@@ -1,3 +1,17 @@
-variable "aws_region" { default = "ap-south-1" }
-variable "cluster_name" { default = "taskboard-eks" }
-variable "environment" { default = "dev" }
+variable "aws_region" {
+  type        = string
+  description = "AWS region to deploy infrastructure"
+  default     = "ap-south-1"
+}
+
+variable "cluster_name" {
+  type        = string
+  description = "EKS cluster name"
+  default     = "taskboard-eks"
+}
+
+variable "environment" {
+  type        = string
+  description = "Deployment environment"
+  default     = "dev"
+}
