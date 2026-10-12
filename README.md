@@ -123,8 +123,10 @@ docker images | grep taskboard
 ```
 
 **Screenshots for Submission**:
-- **Docker Image Build Output & Images List**:
-  ![Module 4 Docker Images](./screenshots/m4-01-docker-images.png)
+- **Backend Non-Root Docker Image Build**:
+  ![Backend Docker Build](./screenshots/m4-01-docker-backend-build.png)
+- **Frontend Multi-Stage Docker Image Build & Images List**:
+  ![Frontend Docker Build & Images](./screenshots/m4-02-docker-frontend-images.png)
 
 ---
 
