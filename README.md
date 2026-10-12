@@ -139,8 +139,10 @@ docker images | grep taskboard
 3. Open GitHub Profile → **Packages** tab.
 
 **Screenshots for Submission**:
-- **GitHub Actions Pipeline Execution & GHCR Packages**:
-  ![Module 5 CI/CD Pipeline](./screenshots/05-cicd-pipeline.png)
+- **GitHub Actions CI/CD Pipeline Execution (All 3 Jobs Green)**:
+  ![Module 5 CI/CD Pipeline](./screenshots/m5-01-github-actions-pipeline.png)
+- **GitHub Actions Workflow Runs Dashboard**:
+  ![Module 5 Workflow Runs Dashboard](./screenshots/m5-02-actions-workflow-runs.png)
 
 ---
 
@@ -154,7 +156,7 @@ trivy image taskboard-backend:local
 
 **Screenshots for Submission**:
 - **Trivy Vulnerability Scan Output**:
-  ![Module 6 Trivy Security Scan](./screenshots/06-trivy-scan.png)
+  ![Module 6 Trivy Security Scan](./screenshots/m6-01-trivy-scan.png)
 
 ---
 
