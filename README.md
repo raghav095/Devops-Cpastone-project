@@ -2,20 +2,92 @@
 
 [![CI/CD Pipeline](https://github.com/raghav095/Devops-Cpastone-project/actions/workflows/devsecops-ci-cd.yml/badge.svg)](https://github.com/raghav095/Devops-Cpastone-project/actions/workflows/devsecops-ci-cd.yml)
 
-**Author:** Raghav Rathi — Session 21 Final DevOps Capstone Project  
+**Author:** Raghav Rathi (Roll No: 10033) — Session 21 Final DevOps Capstone Project  
 **Repository:** [https://github.com/raghav095/Devops-Cpastone-project](https://github.com/raghav095/Devops-Cpastone-project)  
-**Evaluation Standard:** 100 / 100 Points (`GRADING.md` Rubric Compliant)
 
-> **Infrastructure & Verification Notes (Evaluation Transparency)**
-> * **Terraform (AWS VPC + EKS)**: High-availability AWS VPC (public & private subnets across 2 AZs, NAT Gateway) and AWS EKS cluster (`1.31`) with managed node groups defined in `terraform/`. Configuration is fully formatted, verified, and validated via `terraform validate` (`Success! The configuration is valid.`) to prevent unnecessary cloud credit card charges while guaranteeing 100% production-ready HCL syntax.
-> * **Kubernetes, Helm, Ingress, HPA & Monitoring**: Deployed and actively running in a local multi-node Kind Kubernetes cluster (`v1.37.0`). The Helm release (`taskboard`) deploys multi-replica backend and frontend deployments, PostgreSQL with persistent storage, ClusterIP services, Nginx Ingress routing, and HorizontalPodAutoscaler (HPA).
-> * **Prometheus & Observability**: Real-time metrics instrumented via `prometheus-fastapi-instrumentator` on the `/metrics` endpoint, verified live inside the active cluster pods.
-> * **Authentic Screenshots**: All screenshots located in `screenshots/` are authentic terminal, browser, and GitHub captures executed directly on the live system.
+TaskBoard is a SaaS-style project management web application built to demonstrate a complete, production-grade DevOps lifecycle—from local development to automated CI/CD, container security, declarative cloud infrastructure, Kubernetes deployment, and real-time observability.
 
 ---
 
-## Overview
-TaskBoard is a production-grade SaaS-style project management application built to demonstrate an end-to-end DevOps lifecycle from local development to cloud-native Kubernetes deployment and observability.
+## ⚡ Quickstart & Setup Guide (Run on Any Machine)
+
+This repository is designed to run consistently on macOS, Linux, or Windows (WSL2).
+
+### Prerequisites
+- [Docker Desktop](https://www.docker.com/) / Docker Engine & Docker Compose
+- [kubectl](https://kubernetes.io/docs/tasks/tools/) & [Helm 3+](https://helm.sh/)
+- [Python 3.12+](https://www.python.org/) (optional, for running tests natively)
+
+---
+
+### 1. Run Full Stack via Docker Compose (Fastest — 1 Command)
+Starts PostgreSQL 16, FastAPI Backend, and React Frontend in isolated containers:
+
+```bash
+# Clone the repository
+git clone https://github.com/raghav095/Devops-Cpastone-project.git
+cd Devops-Cpastone-project
+
+# Launch full stack
+docker compose up --build -d
+
+# Verify container status
+docker compose ps
+```
+
+- **Frontend UI**: [http://localhost:3000](http://localhost:3000)
+- **Backend API Docs (Swagger)**: [http://localhost:8000/docs](http://localhost:8000/docs)
+- **Liveness & Readiness**: [http://localhost:8000/health](http://localhost:8000/health) & [http://localhost:8000/ready](http://localhost:8000/ready)
+- **Prometheus Metrics**: [http://localhost:8000/metrics](http://localhost:8000/metrics)
+
+To stop the stack:
+```bash
+docker compose down
+```
+
+---
+
+### 2. Run Automated Pytest Suite
+Tests run against an isolated SQLite test database with zero side-effects on production data:
+
+```bash
+cd backend
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+pytest -v
+```
+
+---
+
+### 3. Deploy to Kubernetes with Helm
+Deploy to any local or cloud Kubernetes cluster (Kind, Minikube, EKS, GKE, AKS):
+
+```bash
+# 1. Create namespace
+kubectl apply -f k8s/namespace.yaml
+
+# 2. Deploy or upgrade Helm release
+helm upgrade --install taskboard ./helm/taskboard \
+  --namespace taskboard \
+  --create-namespace
+
+# 3. Verify deployed resources
+kubectl get pods,svc,ingress,hpa -n taskboard
+helm list -n taskboard
+```
+
+---
+
+### 4. Validate Terraform AWS Infrastructure
+AWS VPC and EKS infrastructure defined in declarative HCL:
+
+```bash
+cd terraform
+terraform init
+terraform validate
+terraform plan
+```
 
 ---
 
