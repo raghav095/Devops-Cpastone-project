@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: capstone-taskboard-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/raghav095/devops-heros.git
+    targetRevision: HEAD
+    path: capstone-project/helm/taskboard
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: taskboard
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
