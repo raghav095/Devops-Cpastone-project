@@ -270,6 +270,8 @@ terraform plan
   ![Module 7 Terraform Apply Start](./screenshots/m7-03-terraform-apply-start.png)
 - **Terraform EKS Managed Node Group Provisioning (In Progress)**:
   ![Module 7 Terraform Apply Progress](./screenshots/m7-04-terraform-apply-progress.png)
+- **AWS Management Console - EKS Active Cluster (Sydney ap-southeast-2)**:
+  ![Module 7 AWS EKS Active Cluster](./screenshots/m7-05-aws-eks-cluster.png)
 
 > **Note on Infrastructure**: Terraform configuration in `terraform/` defines a production-ready AWS VPC (4 subnets across 2 AZs, NAT gateway) and AWS EKS cluster (`1.31`) with managed worker node groups. Configuration is validated, formatted, and verified via `terraform validate`.
 
