@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/raghav095/devops-heros.git
+    repoURL: https://github.com/raghav095/Devops-Cpastone-project.git
     targetRevision: HEAD
-    path: capstone-project/helm/taskboard
+    path: helm/taskboard
   destination:
     server: https://kubernetes.default.svc
     namespace: taskboard

@@ -15,3 +15,9 @@ variable "environment" {
   description = "Deployment environment"
   default     = "dev"
 }
+
+variable "vpc_cidr" {
+  type        = string
+  description = "CIDR block for the VPC"
+  default     = "10.20.0.0/16"
+}

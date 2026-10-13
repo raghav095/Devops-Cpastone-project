@@ -13,7 +13,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend
+  name: taskboard-backend
   labels: {app: taskboard-backend}
 spec:
   selector: {app: taskboard-backend}

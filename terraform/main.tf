@@ -3,7 +3,7 @@ module "vpc" {
   version = "5.8.1"
 
   name = "taskboard-vpc"
-  cidr = "10.20.0.0/16"
+  cidr = var.vpc_cidr
 
   azs             = ["ap-south-1a", "ap-south-1b"]
   private_subnets = ["10.20.1.0/24", "10.20.2.0/24"]
