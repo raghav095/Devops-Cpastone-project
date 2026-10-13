@@ -260,7 +260,11 @@ terraform plan
 ```
 
 **Screenshots for Submission**:
-- **Terraform Configuration Validation (HCL Validated)**:
+- **Terraform AWS Plan Execution (58 Resources, Live IAM Raghav-admin)**:
+  ![Module 7 Terraform Plan](./screenshots/m7-01-terraform-plan.png)
+- **Terraform Plan Caller Identity & AWS Account Verification**:
+  ![Module 7 Terraform Caller Identity](./screenshots/m7-01-terraform-plan-identity.png)
+- **Terraform Configuration Validation**:
   ![Module 7 Terraform Validate](./screenshots/m7-01-terraform-validate.png)
 
 > **Note on Infrastructure**: Terraform configuration in `terraform/` defines a production-ready AWS VPC (4 subnets across 2 AZs, NAT gateway) and AWS EKS cluster (`1.31`) with managed worker node groups. Configuration is validated, formatted, and verified via `terraform validate`.

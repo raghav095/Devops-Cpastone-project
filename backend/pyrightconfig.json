@@ -1,0 +1,8 @@
+{
+  "venvPath": "/Users/raghavrathi/devOps/devops-heros/capstone-project/backend",
+  "venv": ".venv",
+  "extraPaths": [
+    "/Users/raghavrathi/devOps/devops-heros/capstone-project/backend/.venv/lib/python3.14/site-packages",
+    "/Users/raghavrathi/devOps/devops-heros/capstone-project/backend"
+  ]
+}
