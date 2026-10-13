@@ -260,12 +260,16 @@ terraform plan
 ```
 
 **Screenshots for Submission**:
-- **Terraform AWS Plan Execution (58 Resources, Live IAM Raghav-admin)**:
+- **Terraform AWS Plan Execution (Live IAM Raghav-admin)**:
   ![Module 7 Terraform Plan](./screenshots/m7-01-terraform-plan.png)
 - **Terraform Plan Caller Identity & AWS Account Verification**:
   ![Module 7 Terraform Caller Identity](./screenshots/m7-01-terraform-plan-identity.png)
 - **Terraform Configuration Validation**:
   ![Module 7 Terraform Validate](./screenshots/m7-01-terraform-validate.png)
+- **Terraform Apply Execution Initiation (Sydney ap-southeast-2)**:
+  ![Module 7 Terraform Apply Start](./screenshots/m7-03-terraform-apply-start.png)
+- **Terraform EKS Managed Node Group Provisioning (In Progress)**:
+  ![Module 7 Terraform Apply Progress](./screenshots/m7-04-terraform-apply-progress.png)
 
 > **Note on Infrastructure**: Terraform configuration in `terraform/` defines a production-ready AWS VPC (4 subnets across 2 AZs, NAT gateway) and AWS EKS cluster (`1.31`) with managed worker node groups. Configuration is validated, formatted, and verified via `terraform validate`.
 
