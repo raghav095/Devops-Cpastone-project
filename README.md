@@ -2,7 +2,7 @@
 
 [![CI/CD Pipeline](https://github.com/raghav095/Devops-Cpastone-project/actions/workflows/devsecops-ci-cd.yml/badge.svg)](https://github.com/raghav095/Devops-Cpastone-project/actions/workflows/devsecops-ci-cd.yml)
 
-**Author:** Raghav Rathi (Roll No: 10033) — Session 21 Final DevOps Capstone Project  
+**Author:** Raghav Rathi (Roll No: 10033) — DevOps Final Capstone Project  
 **Repository:** [https://github.com/raghav095/Devops-Cpastone-project](https://github.com/raghav095/Devops-Cpastone-project)  
 
 TaskBoard is a SaaS-style project management web application built to demonstrate a complete, production-grade DevOps lifecycle—from local development to automated CI/CD, container security, declarative cloud infrastructure, Kubernetes deployment, and real-time observability.
@@ -135,55 +135,54 @@ capstone-project/
 ├── security/                # DevSecOps security policies & Trivy configs
 ├── gitops/                  # ArgoCD Application reconciliation manifest
 ├── troubleshooting/         # Incident response & RCA lab scenarios
+├── screenshots/             # Architecture, execution, and verification evidence
 ├── .github/workflows/       # Automated DevSecOps CI/CD workflow
-├── screenshots/             # Output screenshot directory for submission
 └── README.md                # Complete project documentation
 ```
 
 ---
 
-## Module-by-Module Setup & Real Screenshot Guide
+## Comprehensive Architecture & Implementation Guide
 
-### Module 1: Application Stack (Frontend + Backend + Database)
+### Full Stack Application Runtime (Frontend, Backend & PostgreSQL)
 - **FastAPI Backend**: Runs on port `8000`, exposes `/health`, `/ready`, `/metrics`, and `/api/tasks`.
 - **Database**: PostgreSQL with Alembic migrations (`backend/alembic/versions/`).
 - **React Frontend**: Runs on port `3000`, rendering task management UI.
 
 **Commands to run**:
 ```bash
-cd capstone-project
 docker compose up --build -d
 docker compose ps
 ```
 
-**Screenshots for Submission**:
-- **Docker Compose Stack Running**:
-  ![Docker Compose Stack](./screenshots/m1-01-docker-compose-ps.png)
-- **TaskBoard Dashboard (Frontend on port 3000)**:
+**Live Verification & Deployment Proofs**:
+- **Full Stack Container Runtime**:
+  ![Full Stack Docker Compose Deployment](./screenshots/m1-01-docker-compose-ps.png)
+- **TaskBoard Dashboard UI (Frontend)**:
   ![TaskBoard Frontend Dashboard](./screenshots/m1-02-frontend-dashboard.png)
-- **FastAPI Interactive API Docs (Backend on port 8000)**:
-  ![FastAPI Swagger Docs](./screenshots/m1-03-swagger-api.png)
+- **FastAPI Interactive Swagger Documentation (Backend)**:
+  ![FastAPI Swagger API Documentation](./screenshots/m1-03-swagger-api.png)
 
 ---
 
-### Module 2: Automated Pytest Suite
+### Automated Testing Suite & Test Isolation
 - **Unit Tests**: 6 comprehensive test cases covering health checks (`/health`, `/ready`), root info (`/`), task creation & retrieval (`POST /api/tasks`, `GET /api/tasks/{id}`), task listing (`GET /api/tasks`), and metrics statistics (`GET /api/tasks/stats`).
 - **Test Database**: Isolated SQLite test database ensuring zero pollution of production PostgreSQL.
 
 **Commands to run**:
 ```bash
-cd capstone-project/backend
-docker run --rm -v $(pwd):/app -w /app session21-python-backend:latest pytest -v
+cd backend
+pytest -v
 ```
 
-**Screenshots for Submission**:
-- **Pytest Execution (All 6 Tests Passing)**:
+**Live Verification & Test Execution**:
+- **Pytest Execution Results (All 6 Tests Passing)**:
   ![Pytest Execution Results](./screenshots/m2-01-pytest-tests.png)
 
 ---
 
-### Module 3: Git & Version Control
-- **Version Control**: Git commit history tracking application and infrastructure progression.
+### Version Control & Git Commit History
+- **Version Control**: Git commit history tracking application and infrastructure progression with Conventional Commits.
 
 **Commands to run**:
 ```bash
@@ -191,32 +190,32 @@ git log --oneline -n 12
 git status -s
 ```
 
-**Screenshots for Submission**:
-- **Git Commit History (10+ Meaningful Commits)**:
+**Live Verification & Commit History**:
+- **Git Commit History (Structured & Meaningful Commits)**:
   ![Git Commit History](./screenshots/m3-01-git-history.png)
 
 ---
 
-### Module 4: Docker Containerization
-- **Backend Image**: Non-root Python runtime container.
+### Containerization & Multi-Stage Builds
+- **Backend Image**: Minimal Python runtime container running securely as non-root user `appuser`.
 - **Frontend Image**: Multi-stage build (Node 20 build stage -> Nginx alpine runtime stage).
 
 **Commands to run**:
 ```bash
-docker build -t taskboard-backend:local capstone-project/backend/
-docker build -t taskboard-frontend:local capstone-project/frontend/
+docker build -t taskboard-backend:local backend/
+docker build -t taskboard-frontend:local frontend/
 docker images | grep taskboard
 ```
 
-**Screenshots for Submission**:
+**Live Verification & Image Builds**:
 - **Backend Non-Root Docker Image Build**:
   ![Backend Docker Build](./screenshots/m4-01-docker-backend-build.png)
 - **Frontend Multi-Stage Docker Image Build & Images List**:
-  ![Frontend Docker Build & Images](./screenshots/m4-02-docker-frontend-images.png)
+  ![Frontend Multi-Stage Docker Build & Images List](./screenshots/m4-02-docker-frontend-images.png)
 
 ---
 
-### Module 5: CI/CD Pipeline (GitHub Actions)
+### Automated CI/CD Pipeline (GitHub Actions)
 - **Workflow**: Automated pipeline in `.github/workflows/devsecops-ci-cd.yml` executing tests, building images, and pushing to GitHub Container Registry (GHCR) using Git SHA tags.
 
 **Steps to run**:
@@ -224,15 +223,15 @@ docker images | grep taskboard
 2. Navigate to your GitHub Repository → **Actions** tab.
 3. Open GitHub Profile → **Packages** tab.
 
-**Screenshots for Submission**:
-- **GitHub Actions CI/CD Pipeline Execution (All 3 Jobs Green)**:
-  ![Module 5 CI/CD Pipeline](./screenshots/m5-01-github-actions-pipeline.png)
+**Live Verification & Pipeline Execution**:
+- **GitHub Actions CI/CD Pipeline Execution (All Jobs Green)**:
+  ![GitHub Actions CI/CD Pipeline Execution](./screenshots/m5-01-github-actions-pipeline.png)
 - **GitHub Actions Workflow Runs Dashboard**:
-  ![Module 5 Workflow Runs Dashboard](./screenshots/m5-02-actions-workflow-runs.png)
+  ![GitHub Actions Workflow Runs Dashboard](./screenshots/m5-02-actions-workflow-runs.png)
 
 ---
 
-### Module 6: DevSecOps & Trivy Container Scan
+### DevSecOps Container Vulnerability Scanning (Trivy)
 - **Security Gate**: Container vulnerability scanning using Aqua Security Trivy failing on `CRITICAL,HIGH` CVEs.
 
 **Commands to run**:
@@ -240,48 +239,48 @@ docker images | grep taskboard
 trivy image taskboard-backend:local
 ```
 
-**Screenshots for Submission**:
+**Live Verification & Security Gate**:
 - **Trivy Vulnerability Scan Output**:
-  ![Module 6 Trivy Security Scan](./screenshots/m6-01-trivy-scan.png)
+  ![Aqua Security Trivy Security Scan](./screenshots/m6-01-trivy-scan.png)
 
-> **Written Security Explanation (Grading Requirement)**:  
+> **Security Gate Analysis & CVE Assessment**:  
 > Aqua Security Trivy scanned both the `taskboard-backend` and `taskboard-frontend` container images, evaluating base OS packages and Python/Node dependencies against the National Vulnerability Database (NVD). The scan verified that no unpatched `CRITICAL` or `HIGH` vulnerabilities exist in the runtime environment. By failing the pipeline on severe CVEs, this automated security gate guarantees that only hardened, compliant artifacts are pushed to the GitHub Container Registry (GHCR).
 
 ---
 
-### Module 7: Terraform Infrastructure (AWS VPC + EKS)
-- **Infrastructure as Code**: Declarative AWS VPC (public/private subnets) and EKS cluster module in `terraform/`.
+### Infrastructure as Code (AWS VPC & EKS with Terraform)
+- **Infrastructure as Code**: Declarative AWS VPC (public/private subnets across multiple AZs) and AWS EKS cluster with managed worker node groups in `terraform/`.
 
 **Commands to run**:
 ```bash
-cd capstone-project/terraform
+cd terraform
 terraform init
 terraform plan
 ```
 
-**Screenshots for Submission**:
-- **Terraform AWS Plan Execution (Live IAM Raghav-admin)**:
-  ![Module 7 Terraform Plan](./screenshots/m7-01-terraform-plan.png)
+**Live Verification & Infrastructure Provisioning**:
+- **Terraform AWS Plan Execution**:
+  ![Terraform Plan Execution](./screenshots/m7-01-terraform-plan.png)
 - **Terraform Plan Caller Identity & AWS Account Verification**:
-  ![Module 7 Terraform Caller Identity](./screenshots/m7-01-terraform-plan-identity.png)
+  ![Terraform AWS Identity Verification](./screenshots/m7-01-terraform-plan-identity.png)
 - **Terraform Configuration Validation**:
-  ![Module 7 Terraform Validate](./screenshots/m7-01-terraform-validate.png)
-- **Terraform Apply Execution Initiation (Sydney ap-southeast-2)**:
-  ![Module 7 Terraform Apply Start](./screenshots/m7-03-terraform-apply-start.png)
-- **Terraform EKS Managed Node Group Provisioning (In Progress)**:
-  ![Module 7 Terraform Apply Progress](./screenshots/m7-04-terraform-apply-progress.png)
-- **AWS Management Console - EKS Active Cluster (Sydney ap-southeast-2)**:
-  ![Module 7 AWS EKS Active Cluster](./screenshots/m7-05-aws-eks-cluster.png)
-- **AWS Management Console - Provisioned VPC (Sydney ap-southeast-2)**:
-  ![Module 7 AWS VPC](./screenshots/m7-06-aws-vpc.png)
-- **Terraform Clean Teardown Verification (52 Resources Destroyed, Zero Runaway Costs)**:
-  ![Module 7 Terraform Destroy](./screenshots/m7-07-terraform-destroy.png)
+  ![Terraform Configuration Validation](./screenshots/m7-01-terraform-validate.png)
+- **Terraform Apply Execution Initiation**:
+  ![Terraform Apply Initialization](./screenshots/m7-03-terraform-apply-start.png)
+- **Terraform EKS Managed Node Group Provisioning**:
+  ![Terraform EKS Node Group Provisioning](./screenshots/m7-04-terraform-apply-progress.png)
+- **AWS Management Console - Active EKS Cluster**:
+  ![AWS Management Console - EKS Active Cluster](./screenshots/m7-05-aws-eks-cluster.png)
+- **AWS Management Console - Provisioned VPC**:
+  ![AWS Management Console - Provisioned VPC](./screenshots/m7-06-aws-vpc.png)
+- **Clean Resource Teardown Verification (52 Resources Destroyed, Zero Runaway Costs)**:
+  ![Clean Resource Teardown (52 Resources Destroyed)](./screenshots/m7-07-terraform-destroy.png)
 
-> **Note on Infrastructure**: Terraform configuration in `terraform/` defines a production-ready AWS VPC (4 subnets across 2 AZs, NAT gateway) and AWS EKS cluster (`1.31`) with managed worker node groups. Configuration is validated, formatted, and verified via `terraform validate`.
+> **Note on Infrastructure**: Terraform configuration in `terraform/` defines a production-ready AWS VPC (4 subnets across 2 AZs, NAT gateway) and AWS EKS cluster (`1.31`) with managed worker node groups. Configuration is validated, formatted, and verified via `terraform validate`. All resources were cleanly destroyed after validation to prevent cloud costs.
 
 ---
 
-### Module 8: Kubernetes & Helm Package Management
+### Kubernetes Deployment & Helm Package Management
 - **Helm Chart**: Parameterized deployment in `helm/taskboard/` managing backend, frontend, PostgreSQL, ClusterIP services, Ingress, and HorizontalPodAutoscaler (HPA).
 
 **Commands to run**:
@@ -293,15 +292,15 @@ kubectl get pods,svc,ingress,hpa -n taskboard
 helm list -n taskboard
 ```
 
-**Screenshots for Submission**:
+**Live Verification & Cluster Status**:
 - **Helm Package Linting & Manifest Templates**:
-  ![Module 8 Helm Lint and Templates](./screenshots/m8-01-helm-lint-and-template.png)
+  ![Helm Lint & Manifest Templates](./screenshots/m8-01-helm-lint-and-template.png)
 - **Kubernetes Live Running Pods, Services, Ingress & HPA**:
-  ![Module 8 K8s Running Pods & Helm Status](./screenshots/m8-02-k8s-running-pods.png)
+  ![Kubernetes Pods, Services, Ingress & HPA Status](./screenshots/m8-02-k8s-running-pods.png)
 
 ---
 
-### Module 9: Observability & Prometheus/Grafana
+### Observability, Metrics & Prometheus Instrumentation
 - **Metrics**: FastAPI instrumentation exporting `/metrics` endpoint scraped by Prometheus and rendered in Grafana.
 
 **Commands to run**:
@@ -310,23 +309,23 @@ curl http://localhost:8000/metrics
 kubectl get servicemonitors -n taskboard
 ```
 
-**Screenshots for Submission**:
+**Live Verification & Instrumentation**:
 - **Prometheus Metrics & Live Application Instrumentation**:
-  ![Module 9 Observability Prometheus Metrics](./screenshots/m9-01-metrics.png)
+  ![Prometheus Live Metrics Scrape](./screenshots/m9-01-metrics.png)
 
 ---
 
-### Module 10: Troubleshooting Lab & Root Cause Analysis
-- **Scenarios**: Incident response for broken image tags and mismatched service labels in `troubleshooting/`.
+### Incident Response, Troubleshooting & Root Cause Analysis
+- **Scenarios**: Hands-on incident response for broken container images and mismatched Kubernetes service selectors in `troubleshooting/`.
 
 **Commands to run**:
 ```bash
-kubectl apply -f capstone-project/troubleshooting/broken-image.yaml
+kubectl apply -f troubleshooting/broken-image.yaml
 kubectl describe pod -n taskboard
-kubectl apply -f capstone-project/troubleshooting/broken-service.yaml
+kubectl apply -f troubleshooting/broken-service.yaml
 kubectl get endpoints -n taskboard
 ```
 
-**Screenshots for Submission**:
+**Live Verification & Root Cause Analysis**:
 - **Troubleshooting RCA Output (ImagePullBackOff & Mismatched Service Selector)**:
-  ![Module 10 Troubleshooting RCA](./screenshots/m10-01-troubleshooting.png)
+  ![Troubleshooting RCA Output (ImagePullBackOff & Service Resolution)](./screenshots/m10-01-troubleshooting.png)
