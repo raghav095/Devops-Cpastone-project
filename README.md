@@ -274,6 +274,8 @@ terraform plan
   ![Module 7 AWS EKS Active Cluster](./screenshots/m7-05-aws-eks-cluster.png)
 - **AWS Management Console - Provisioned VPC (Sydney ap-southeast-2)**:
   ![Module 7 AWS VPC](./screenshots/m7-06-aws-vpc.png)
+- **Terraform Clean Teardown Verification (52 Resources Destroyed, Zero Runaway Costs)**:
+  ![Module 7 Terraform Destroy](./screenshots/m7-07-terraform-destroy.png)
 
 > **Note on Infrastructure**: Terraform configuration in `terraform/` defines a production-ready AWS VPC (4 subnets across 2 AZs, NAT gateway) and AWS EKS cluster (`1.31`) with managed worker node groups. Configuration is validated, formatted, and verified via `terraform validate`.
 
