@@ -5,7 +5,7 @@ module "vpc" {
   name = "taskboard-vpc"
   cidr = var.vpc_cidr
 
-  azs             = ["ap-south-1a", "ap-south-1b"]
+  azs             = ["ap-southeast-2a", "ap-southeast-2b"]
   private_subnets = ["10.20.1.0/24", "10.20.2.0/24"]
   public_subnets  = ["10.20.101.0/24", "10.20.102.0/24"]
 
@@ -32,6 +32,9 @@ module "eks" {
 
   cluster_endpoint_public_access           = true
   enable_cluster_creator_admin_permissions = true
+  create_cloudwatch_log_group              = false
+  create_kms_key                           = false
+  cluster_encryption_config                = {}
 
   eks_managed_node_groups = {
     main = {
